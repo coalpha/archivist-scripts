@@ -1,5 +1,3 @@
-$ytdl = "yt-dlp"
-
 function Get-Command {
    param ([hashtable] $opts)
 
@@ -30,11 +28,10 @@ function Get-Command {
    }
 
    # filesystem options
-   $default_output = "archives/%(upload_date)s - %(uploader)s - %(title)s - [%(id)s].%(ext)s"
+   $default_output = "archives/%(upload_date)s_%(uploader)s_%(title)s_%(id)s.%(ext)s"
 
    $argv += @(
-      # have to move that to the end
-      # "--batch-file", $($opts.batch_file)
+      "--batch-file", $($opts.batch_file)
       "--output", $($opts.output ?? $default_output)
       "--no-overwrites"
    )
@@ -91,11 +88,6 @@ function Get-Command {
       "--embed-thumbnail"
       "--add-metadata"
       "--exec", "pwsh $PSScriptRoot\Write-PostLog.ps1 $($opts.log_file ?? "log.txt") {}"
-   )
-
-   # batch file
-   $argv += @(
-      "--batch-file", $($opts.batch_file)
    )
 
    return $argv
