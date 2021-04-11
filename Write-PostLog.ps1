@@ -1,4 +1,4 @@
-param([string] $log_file = "log.txt", [string] $just_completed)
+param([string] $log_file, [string] $just_completed)
 
 echo writing $just_completed to $log_file
 

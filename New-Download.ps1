@@ -1,4 +1,4 @@
-function Get-Command {
+function New-Download {
    param ([hashtable] $opts)
 
    $argv = @()
@@ -10,13 +10,21 @@ function Get-Command {
    $argv += "--force-ipv4"
 
    # video selection
-   $argv += "--download-archive", $($opts.archive_log ?? "archive.log")
+   $argv += @(
+      "--download-archive", $($opts.archive_log ?? "archive.log")
+      # we're not gonna download livestreams
+      "--match-filter", "!is_live & !live"
+   )
 
    # download options
    $argv += "--concurrent-fragments", $($opts.concurrent_fragments ?? 1)
 
    if ($opts.ContainsKey("limit_rate")) {
-      $argv += "--limit-rate $($opts.limit_rate)"
+      $argv += @("--limit-rate", $($opts.limit_rate))
+   }
+
+   if ($opts.playlist_reverse) {
+      $argv += "--playlist-reverse"
    }
 
    if ($opts.ContainsKey("retries")) {
@@ -69,9 +77,8 @@ function Get-Command {
    )
 
    # video format options
-
    $argv += @(
-      "--format", $(Get-Content $PSScriptRoot\format.txt)
+      "--format", $(Get-Content $PSScriptRoot\format.txt -TotalCount 1)
       "--merge-output-format", $($opts.format ?? "mkv")
    )
 
@@ -90,5 +97,5 @@ function Get-Command {
       "--exec", "pwsh $PSScriptRoot\Write-PostLog.ps1 $($opts.log_file ?? "log.txt") {}"
    )
 
-   return $argv
+   yt-dlp $argv
 }

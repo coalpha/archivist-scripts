@@ -1,4 +1,4 @@
-. ..\Get-Command.ps1
+. ..\New-Download.ps1
 
 $opts = @{
    batch_file = "random.txt"
@@ -7,4 +7,4 @@ $opts = @{
    log_file = "random_log.txt"
 }
 
-yt-dlp $(Get-Command $opts)
+New-Download $opts
