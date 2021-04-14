@@ -1,4 +1,4 @@
-. ..\New-Download.ps1
+. ..\Invoke-YoutubeDL.ps1
 
 $opts = @{
    batch_file = "channels.txt"

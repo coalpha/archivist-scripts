@@ -1,4 +1,4 @@
-. ..\New-Download.ps1
+. ..\Invoke-YoutubeDL.ps1
 
 $opts = @{
    batch_file = "random.txt"
@@ -7,4 +7,4 @@ $opts = @{
    log_file = "random_log.txt"
 }
 
-New-Download $opts
+Invoke-YoutubeDL $opts

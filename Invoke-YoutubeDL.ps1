@@ -1,4 +1,4 @@
-function New-Download {
+function Invoke-YoutubeDL {
    param ([hashtable] $opts)
 
    $argv = @()
@@ -31,15 +31,14 @@ function New-Download {
       $argv += "--retries $($opts.retries)"
    }
 
-   if (!$opts.ContainsKey("batch_file")) {
-      throw "The options hashtable must contain the key batch_file!"
+   # filesystem options
+   if ($opts.ContainsKey("batch_file")) {
+      $argv += "--batch-file", $($opts.batch_file)
    }
 
-   # filesystem options
    $default_output = "archives/%(upload_date)s_%(uploader)s_%(title)s_%(id)s.%(ext)s"
 
    $argv += @(
-      "--batch-file", $($opts.batch_file)
       "--output", $($opts.output ?? $default_output)
       "--no-overwrites"
    )
@@ -78,7 +77,6 @@ function New-Download {
 
    # video format options
    $argv += @(
-      "--format", $(Get-Content $PSScriptRoot\format.txt -TotalCount 1)
       "--merge-output-format", $($opts.format ?? "mkv")
    )
 
@@ -96,6 +94,14 @@ function New-Download {
       "--add-metadata"
       "--exec", "pwsh $PSScriptRoot\Write-PostLog.ps1 $($opts.log_file ?? "log.txt") {}"
    )
+
+   if ($opts.ContainsKey("urls")) {
+      if ($opts.urls -is [array]) {
+         $argv += $opts.urls
+      } else {
+         throw "opts.urls must be a string array!"
+      }
+   }
 
    yt-dlp $argv
 }

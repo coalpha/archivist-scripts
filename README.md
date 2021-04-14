@@ -2,6 +2,4 @@
 
 *Smol archivist's first archive attempt!*
 
-I like
-[TheFrenchGhosty's archive scripts](https://github.com/TheFrenchGhosty/TheFrenchGhostys-Ultimate-YouTube-DL-Scripts-Collection)
-but I wanted to make a few changes to them.
+So I got a new external hdd and I'm obligated to fill it with things.
