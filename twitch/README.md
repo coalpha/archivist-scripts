@@ -1,6 +1,6 @@
-# vods
+# twitch
 
-vods should honestly be downloaded manually through twitch leecher.
+VODs should be downloaded manually through twitch leecher.
 Use this output format:
 
 ```

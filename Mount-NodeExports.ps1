@@ -1,5 +1,5 @@
-. .\Receive-NodeExports.ps1
-. .\Invoke-YoutubeDL.ps1
+. $PSScriptRoot\Receive-NodeExports.ps1
+. $PSScriptRoot\Invoke-YoutubeDL.ps1
 
 function Mount-NodeExports {
    param ([string] $js_file)
