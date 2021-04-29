@@ -50,8 +50,12 @@ function Invoke-YoutubeDL {
       $argv += "--max-views", $opts.max_views
    }
 
+   if (!$opts.ContainsKey("sys_dl_log")) {
+      $opts.sys_dl_log = "sys_dl.log"
+   }
+
    $argv += @(
-      "--download-archive", $($opts.download_archive ?? "download_archive.txt")
+      "--download-archive", $opts.sys_dl_log
       # we're not gonna download livestreams
       "--match-filter", $($opts.match_filter ?? "!is_live & !live")
    )
@@ -140,11 +144,14 @@ function Invoke-YoutubeDL {
    }
 
    # post processing options
+   if (!opts.ContainsKey("usr_dl_log")) {
+      $opts.usr_dl_log = "usr_dl.log"
+   }
    $argv += @(
       "--embed-subs"
       "--embed-thumbnail"
       "--add-metadata"
-      "--exec", "pwsh $PSScriptRoot\Write-DownloadLog.ps1 $($opts.download_log ?? "download_log.txt") {}"
+      "--exec", "pwsh $PSScriptRoot\Write-DownloadLog.ps1 $($opts.usr_dl_log) {}"
    )
 
    if ($opts.ContainsKey("urls")) {

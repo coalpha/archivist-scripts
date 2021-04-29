@@ -12,7 +12,7 @@ export type opts = {
    min_views?: number;
    max_views?: number;
    match_filter?: string;
-   download_archive?: string;
+   sys_dl_log?: string;
 
    // download options
    concurrent_fragments?: number;
@@ -44,7 +44,8 @@ export type opts = {
    };
 
    // post processing options
-   download_log?: string;
+   /** Only meant for the user to see when things were downloaded */
+   usr_dl_log?: string;
 
    // non options
    urls?: string[];

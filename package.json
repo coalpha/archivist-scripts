@@ -1,0 +1,9 @@
+{
+   "devDependencies": {
+      "@types/node": "latest"
+   },
+   "dependencies": {
+      "fs-extra": "latest",
+      "sanitize-filename": "^1.6.3"
+   }
+}
