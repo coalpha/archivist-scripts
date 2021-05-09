@@ -22,6 +22,7 @@ export type opts = {
 
    // filesystem options
    batch_file?: string;
+   /** output format, not to be confused with `format` */
    output?: string;
    no_continue?: boolean;
 

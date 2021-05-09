@@ -144,7 +144,7 @@ function Invoke-YoutubeDL {
    }
 
    # post processing options
-   if (!opts.ContainsKey("usr_dl_log")) {
+   if (!$opts.ContainsKey("usr_dl_log")) {
       $opts.usr_dl_log = "usr_dl.log"
    }
    $argv += @(

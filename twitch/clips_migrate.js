@@ -14,7 +14,7 @@ const get_info_json_rec = dir =>
 
 const {spawnSync} = require("child_process");
 
-const new_format = require("./clips").format;
+const new_output = require("./clips").output;
 
 const sanitize = require("sanitize-filename");
 
@@ -33,7 +33,7 @@ function sanitize_obj(obj) {
 const pyformat = obj =>
    spawnSync(
       "python",
-      [`${__dirname}/format.py`, new_format, JSON.stringify(sanitize_obj(obj))],
+      [`${__dirname}/format.py`, new_output, JSON.stringify(sanitize_obj(obj))],
       {encoding: "utf8"}
    ).stdout
 

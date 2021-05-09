@@ -4,9 +4,6 @@ const channels =
    [ "5uppp"
    , "stevesuptic"
    , "plushys"
-   , "dakotaz"
-   , "dumbdog"
-   , "hafu"
    ]
 ;
 
@@ -21,14 +18,14 @@ const get_clips = channel => {
 
 const select = key => obj => obj[key];
 
-const format =
+const output =
    "clips/%(creator)s/%(upload_date)s_%(title)s_%(id)s.%(ext)s"
-exports.format = format;
+exports.output = output;
 
 /** @type {opts} */
 const $all_time = {
-   format,
-   playlist_end: 30,
+   output,
+   playlist_end: 100,
    usr_dl_log: "$all_time.log",
    sys_dl_log: "clips_sys.log",
    urls: channels.map(get_clips).map(select("$all_time")),
@@ -36,8 +33,8 @@ const $all_time = {
 
 /** @type {opts} */
 const $30_days = {
-   format,
-   playlist_end: 20,
+   output,
+   playlist_end: 30,
    usr_dl_log: "$30_days.log",
    sys_dl_log: "clips_sys.log",
    urls: channels.map(get_clips).map(select("$30_days")),
@@ -45,9 +42,9 @@ const $30_days = {
 
 /** @type {opts} */
 const $7_days = {
-   format,
+   output,
    min_views: 500,
-   playlist_end: 7,
+   playlist_end: 10,
    usr_dl_log: "$7_days.log",
    sys_dl_log: "clips_sys.log",
    urls: channels.map(get_clips).map(select("$7_days")),
